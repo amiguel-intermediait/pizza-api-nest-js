@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+
+  pizzadb:
+    container_name: pizzadb
+    image: postgres:alpine3.16
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=pizza
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - pizza      
+
+volumes:
+  db-volume:
+
+networks:
+    pizza:
